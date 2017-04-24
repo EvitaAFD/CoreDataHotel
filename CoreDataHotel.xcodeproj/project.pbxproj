@@ -17,6 +17,7 @@
 		5049F1B11EAE962C000B0C09 /* hotel.png in Resources */ = {isa = PBXBuildFile; fileRef = 5049F1AE1EAE962C000B0C09 /* hotel.png */; };
 		5049F1B21EAE962C000B0C09 /* hotels.json in Resources */ = {isa = PBXBuildFile; fileRef = 5049F1AF1EAE962C000B0C09 /* hotels.json */; };
 		5049F1B31EAE962C000B0C09 /* room.png in Resources */ = {isa = PBXBuildFile; fileRef = 5049F1B01EAE962C000B0C09 /* room.png */; };
+		5049F1B61EAEA490000B0C09 /* HotelsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5049F1B51EAEA490000B0C09 /* HotelsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,8 @@
 		5049F1AE1EAE962C000B0C09 /* hotel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hotel.png; sourceTree = "<group>"; };
 		5049F1AF1EAE962C000B0C09 /* hotels.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = hotels.json; sourceTree = "<group>"; };
 		5049F1B01EAE962C000B0C09 /* room.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = room.png; sourceTree = "<group>"; };
+		5049F1B41EAEA490000B0C09 /* HotelsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotelsViewController.h; sourceTree = "<group>"; };
+		5049F1B51EAEA490000B0C09 /* HotelsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotelsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +114,8 @@
 		5049F1AD1EAE8004000B0C09 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				5049F1B41EAEA490000B0C09 /* HotelsViewController.h */,
+				5049F1B51EAEA490000B0C09 /* HotelsViewController.m */,
 				5049F1911EAE5F80000B0C09 /* AppDelegate.h */,
 				5049F1921EAE5F80000B0C09 /* AppDelegate.m */,
 			);
@@ -194,6 +199,7 @@
 				5049F1961EAE5F80000B0C09 /* ViewController.m in Sources */,
 				5049F19C1EAE5F80000B0C09 /* CoreDataHotel.xcdatamodeld in Sources */,
 				5049F1931EAE5F80000B0C09 /* AppDelegate.m in Sources */,
+				5049F1B61EAEA490000B0C09 /* HotelsViewController.m in Sources */,
 				5049F1901EAE5F80000B0C09 /* main.m in Sources */,
 				5049F1AA1EAE6D30000B0C09 /* AutoLayout.m in Sources */,
 			);
