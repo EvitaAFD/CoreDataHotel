@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 #import "AutoLayout.h"
-
+#import "HotelsViewController.h"
 @interface ViewController ()
 
 @end
@@ -30,7 +30,7 @@
     
     UIButton *browseButton = [self createButtonWithTitle:@"Browse"];
     UIButton *bookButton = [self createButtonWithTitle:@"Book"];
-    UIButton * lookupButton = [self createButtonWithTitle:@"Look Up"];
+    UIButton *lookupButton = [self createButtonWithTitle:@"Look Up"];
     
     browseButton.backgroundColor = [UIColor colorWithRed:1.0 green:0.25 blue:1.0 alpha:1.0];
     
@@ -43,7 +43,9 @@
 }
 
 -(void)browseButtonSelected {
-    NSLog(@"LAB STUFF");
+    HotelsViewController *newHotelView = [[HotelsViewController alloc]init];
+    
+    [self.navigationController pushViewController:newHotelView animated:YES];
 }
 
 -(UIButton *)createButtonWithTitle:(NSString *)title {

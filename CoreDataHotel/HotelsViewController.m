@@ -10,8 +10,9 @@
 #import "AppDelegate.h"
 #import "Hotel+CoreDataClass.h"
 #import "Hotel+CoreDataProperties.h"
+#import "AutoLayout.h"
 
-@interface HotelsViewController () <UITableViewDataSource>
+@interface HotelsViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) NSArray *allHotels;
 @property (strong, nonatomic) UITableView *tableView;
@@ -28,10 +29,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.tableView.backgroundColor = [UIColor whiteColor];
+    self.tableView = [[UITableView alloc]init];
+    
     self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    
+    [self.view addSubview:self.tableView];
     
     [self.tableView registerClass:[UITableViewCell class]forCellReuseIdentifier:@"cell"];
     
+    self.tableView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    [AutoLayout fullScreenConstraintsWithVFLForView:self.tableView];
 }
 
 -(NSArray *)allHotels {
@@ -41,7 +51,7 @@
         
         NSManagedObjectContext *context = appDelegate.persistentContainer.viewContext;
         
-        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Hotels"];
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Hotel"];
         
         
         NSError *fetchError;
@@ -62,8 +72,19 @@
     return self.allHotels.count;
 }
 
-//-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//
-//}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+    }
+    
+    Hotel *hotel = self.allHotels[indexPath.row];
+    
+    cell.textLabel.text = hotel.name;
+    
+    return cell;
+    
+}
 
 @end
