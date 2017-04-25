@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "AutoLayout.h"
 #import "HotelsViewController.h"
+#import "DatePickerViewController.h"
 @interface ViewController ()
 
 @end
@@ -40,6 +41,24 @@
 
     
     [browseButton addTarget:self action:@selector(browseButtonSelected) forControlEvents:UIControlEventTouchUpInside];
+    [bookButton addTarget: self action:@selector(bookButtonSelected) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    NSLayoutConstraint *browseButtonTop = [AutoLayout genericConstraintFrom:browseButton toView:self.view withAttribute:NSLayoutAttributeTop];
+    
+    browseButtonTop.constant = navBarHeight;
+    
+    NSLayoutConstraint *bookButtonCenterY = [AutoLayout genericConstraintFrom:bookButton toView:self.view withAttribute:NSLayoutAttributeCenterY];
+    
+    bookButtonCenterY.constant = navBarHeight / 2;
+}
+
+-(void)bookButtonSelected {
+
+    DatePickerViewController *datePickerController = [[DatePickerViewController alloc]init];
+    
+    [self.navigationController pushViewController:datePickerController animated:YES];
+    
 }
 
 -(void)browseButtonSelected {

@@ -11,6 +11,7 @@
 #import "Hotel+CoreDataClass.h"
 #import "Hotel+CoreDataProperties.h"
 #import "AutoLayout.h"
+#import "RoomsViewController.h"
 
 @interface HotelsViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -86,7 +87,13 @@
     return cell;
     
 }
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    RoomsViewController *roomView = [[RoomsViewController alloc]init];
+    
+    [self.navigationController pushViewController:roomView animated:YES];
+    
 
+}
 
 
 

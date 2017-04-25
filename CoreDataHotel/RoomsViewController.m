@@ -71,9 +71,9 @@
         roomCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"roomCell"];
     }
     
-    Room *room = self.allRooms[indexPath.row];
+    Room *room = [self.allRooms objectAtIndex:indexPath.row];
     
-    roomCell.textLabel.text = [NSString stringWithFormat:@"%d", room.number];
+    roomCell.textLabel.text = [NSString stringWithFormat:@"%hd",room.number];
     
     return roomCell;
     
