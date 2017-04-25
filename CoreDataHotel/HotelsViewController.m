@@ -24,7 +24,7 @@
 
 -(void)loadView{
     [super loadView];
-    //add tableview as subview and apply constraints
+
 }
 
 - (void)viewDidLoad {
@@ -88,8 +88,9 @@
     
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
     RoomsViewController *roomView = [[RoomsViewController alloc]init];
-    
+    [roomView setAllRooms:[[self.allHotels[indexPath.row] rooms] allObjects]];
     [self.navigationController pushViewController:roomView animated:YES];
     
 

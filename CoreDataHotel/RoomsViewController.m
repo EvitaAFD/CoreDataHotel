@@ -37,31 +37,6 @@
     [AutoLayout fullScreenConstraintsWithVFLForView:self.roomsTableView];
 }
 
-
--(NSArray *)allRooms {
-    if (!_allRooms) {
-        
-        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-        
-        NSManagedObjectContext *context = appDelegate.persistentContainer.viewContext;
-        
-        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Room"];
-        
-        
-        NSError *fetchError;
-        NSArray *rooms = [context executeFetchRequest:request error:&fetchError];
-        
-        if (fetchError) {
-            NSLog(@"There was an error fatching rooms from Core Data!");
-        }
-        
-        _allRooms = rooms;
-    }
-    
-    return _allRooms;
-    
-}
-
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.allRooms.count;
 }

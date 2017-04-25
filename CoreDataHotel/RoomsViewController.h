@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RoomsViewController : UIViewController
+@interface RoomsViewController : UIViewController {
+
+    NSArray *_allRooms;
+
+}
+
+-(void)setAllRooms:(NSArray *)rooms;
 
 @end
