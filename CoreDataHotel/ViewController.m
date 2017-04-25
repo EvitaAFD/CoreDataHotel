@@ -34,10 +34,15 @@
     UIButton *lookupButton = [self createButtonWithTitle:@"Look Up"];
     
     browseButton.backgroundColor = [UIColor colorWithRed:1.0 green:0.25 blue:1.0 alpha:1.0];
+    bookButton.backgroundColor = [UIColor colorWithRed:0.75 green:0.50 blue:1.0 alpha:1.0];
     
     [AutoLayout leadingConstraintFrom:browseButton toView:self.view];
     [AutoLayout trailingConstraintFrom:browseButton toView:self.view];
     [AutoLayout equalHeightConstraintFromView:browseButton toView:self.view withMultiplier:0.33];
+    
+    [AutoLayout leadingConstraintFrom:bookButton toView:self.view];
+    [AutoLayout trailingConstraintFrom:bookButton toView:self.view];
+    [AutoLayout equalHeightConstraintFromView:bookButton toView:self.view withMultiplier:0.33];
 
     
     [browseButton addTarget:self action:@selector(browseButtonSelected) forControlEvents:UIControlEventTouchUpInside];
