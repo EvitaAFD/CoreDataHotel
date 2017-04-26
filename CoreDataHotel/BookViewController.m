@@ -26,6 +26,7 @@
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
     [self setupBooking];
+    [self setupDoneButton];
    
 }
 
@@ -34,6 +35,7 @@
     self.firstName = [[UITextField alloc]init];
     self.lastName = [[UITextField alloc]init];
     self.email = [[UITextField alloc]init];
+    self.email.keyboardType = UIKeyboardTypeEmailAddress;
     
     [self.view addSubview:self.firstName];
     [self.view addSubview:self.lastName];
@@ -43,7 +45,7 @@
     self.lastName.translatesAutoresizingMaskIntoConstraints = NO;
     self.email.translatesAutoresizingMaskIntoConstraints = NO;
     
-    [AutoLayout setConstraintConstantsFrom:self.firstName toView:self.view withAttribute:NSLayoutAttributeTop andConstant:200];
+    [AutoLayout setConstraintConstantsFrom:self.firstName toView:self.view withAttribute:NSLayoutAttributeTop andConstant:150];
     [AutoLayout setConstraintConstantsFrom:self.firstName toView:self.view withAttribute:NSLayoutAttributeLeft andConstant:40];
     [AutoLayout setConstraintConstantsFrom:self.firstName toView:self.view withAttribute:NSLayoutAttributeRight andConstant:-40];
     self.firstName.placeholder = @"First Name, DO OR DIE aka REQUIRED";
@@ -60,6 +62,16 @@
     
     
     
+}
+
+-(void)setupDoneButton {
+    UIBarButtonItem *bookingDoneButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(bookingDoneButtonPressed)];
+    
+    [self.navigationItem setRightBarButtonItem:bookingDoneButton];
+}
+
+-(void)bookingDoneButtonPressed {
+
 }
 
 
