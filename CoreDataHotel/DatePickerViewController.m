@@ -39,11 +39,6 @@
     NSDate *startDate = self.startDate.date;
     NSDate *endDate = self.endDate.date;
     
-    if ([[NSDate date] timeIntervalSinceNow] < 0.0) {
-        self.startDate.date = [NSDate date];
-        return;
-    }
-    
     if ([[NSDate date] timeIntervalSinceReferenceDate] > [endDate timeIntervalSinceReferenceDate]) {
         self.endDate.date = [NSDate date];
         return;

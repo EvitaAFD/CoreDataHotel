@@ -40,4 +40,9 @@
                                     withOptions:(NSLayoutFormatOptions)options
                                withVisualFormat:(NSString *)visualFormat;
 
++(NSLayoutConstraint *)setConstraintConstantsFrom: (UIView *)view
+                                           toView:(UIView *)superView
+                                    withAttribute: (NSLayoutAttribute)attribute
+                                      andConstant: (CGFloat)constant;
+
 @end

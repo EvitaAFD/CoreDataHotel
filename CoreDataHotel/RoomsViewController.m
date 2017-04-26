@@ -12,6 +12,7 @@
 #import "Room+CoreDataClass.h"
 #import "Room+CoreDataProperties.h"
 
+
 @interface RoomsViewController () <UITableViewDataSource>
 
 @property (strong, nonatomic) UITableView *roomsTableView;
@@ -40,6 +41,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.allRooms.count;
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *roomCell = [tableView dequeueReusableCellWithIdentifier:@"roomCell"];
     if (roomCell == nil) {
@@ -51,9 +53,8 @@
     roomCell.textLabel.text = [NSString stringWithFormat:@"%hd",room.number];
     
     return roomCell;
-    
-    
 }
+
 
 
 
