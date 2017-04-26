@@ -43,15 +43,15 @@
     self.lastName.translatesAutoresizingMaskIntoConstraints = NO;
     self.email.translatesAutoresizingMaskIntoConstraints = NO;
     
-    [AutoLayout setConstraintConstantsFrom:self.firstName toView:self.view withAttribute:NSLayoutAttributeTop andConstant:100];
+    [AutoLayout setConstraintConstantsFrom:self.firstName toView:self.view withAttribute:NSLayoutAttributeTop andConstant:200];
     [AutoLayout setConstraintConstantsFrom:self.firstName toView:self.view withAttribute:NSLayoutAttributeLeft andConstant:40];
     [AutoLayout setConstraintConstantsFrom:self.firstName toView:self.view withAttribute:NSLayoutAttributeRight andConstant:-40];
-    self.firstName.placeholder = @"First Name";
+    self.firstName.placeholder = @"First Name, DO OR DIE aka REQUIRED";
     
     [AutoLayout setConstraintConstantsFrom:self.lastName toView:self.firstName withAttribute:NSLayoutAttributeTop andConstant:100];
     [AutoLayout setConstraintConstantsFrom:self.lastName toView:self.view withAttribute:NSLayoutAttributeLeft andConstant:40];
     [AutoLayout setConstraintConstantsFrom:self.lastName toView:self.view withAttribute:NSLayoutAttributeRight andConstant:-40];
-    self.lastName.placeholder = @"Last Name";
+    self.lastName.placeholder = @"Last Name, DO OR DIE aka REQUIRED";
     
     [AutoLayout setConstraintConstantsFrom:self.email toView:self.lastName withAttribute:NSLayoutAttributeTop andConstant:100];
     [AutoLayout setConstraintConstantsFrom:self.email toView:self.view withAttribute:NSLayoutAttributeLeft andConstant:40];
