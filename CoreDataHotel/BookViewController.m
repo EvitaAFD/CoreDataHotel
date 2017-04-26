@@ -76,7 +76,7 @@
 }
 
 -(void)setupSaveButton {
-    //add code from today
+    
     UIBarButtonItem *bookingSaveButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(bookingSaveButtonPressed)];
     
     [self.navigationItem setRightBarButtonItem:bookingSaveButton];
@@ -84,7 +84,31 @@
 }
 
 -(void)bookingSaveButtonPressed {
-
+    
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    
+    NSManagedObjectContext *context = appDelegate.persistentContainer.viewContext;
+    
+    Reservation *reservation = [NSEntityDescription insertNewObjectForEntityForName:@"Reservation" inManagedObjectContext:context];
+    
+    reservation.startDate = [NSDate date];
+    reservation.endDate = self.endDate;
+    reservation.room = self.room;
+    
+    self.room.reservation = [self.room.reservation setByAddingObject:reservation];
+    
+    reservation.guest = [NSEntityDescription insertNewObjectForEntityForName:@"Guest" inManagedObjectContext:context];
+    reservation.guest.firstName = self.firstName.text;
+    reservation.guest.lastName = self.lastName.text;
+    
+    NSError *saveError;
+    [context save:&saveError];
+    
+    if (saveError) {
+        NSLog(@"Save error is %@", saveError);
+    }else{
+        NSLog(@"Save reservation successful");
+    }
         [self.navigationController popViewControllerAnimated:YES];
 }
 
