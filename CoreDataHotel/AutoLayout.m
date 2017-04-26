@@ -59,6 +59,25 @@
     
 }
 
++(NSLayoutConstraint *)setConstraintConstantsFrom: (UIView *)view
+                                      toView:(UIView *)superView
+                               withAttribute: (NSLayoutAttribute)attribute
+                               andConstant: (CGFloat)constant{
+    
+    NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:view
+                                                                  attribute:attribute
+                                                                  relatedBy:NSLayoutRelationEqual
+                                                                     toItem:superView
+                                                                  attribute:attribute
+                                                                 multiplier:1.0
+                                                                   constant:constant];
+    
+    constraint.active = YES;
+    
+    return constraint;
+    
+}
+
 
 +(NSLayoutConstraint *)genericConstraintFrom: (UIView *)view
                                       toView:(UIView *)superView
@@ -91,6 +110,20 @@
     
     return [AutoLayout genericConstraintFrom:view toView:otherView withAttribute:NSLayoutAttributeTrailing];
     
+}
+
++(NSArray *)constraintsWithVFLForViewDictionary:(NSDictionary *)viewDictionary
+                           forMetricsDictionary:(NSDictionary *)metricsDictionary
+                                    withOptions:(NSLayoutFormatOptions)options
+                               withVisualFormat:(NSString *)visualFormat{
+    NSArray *constraints = [[NSArray alloc]init];
+    
+    constraints = [NSLayoutConstraint constraintsWithVisualFormat:visualFormat
+                                                          options:options
+                                                          metrics:metricsDictionary
+                                                            views:viewDictionary];
+    [NSLayoutConstraint activateConstraints:constraints];
+    return constraints.copy;
 }
 
 @end

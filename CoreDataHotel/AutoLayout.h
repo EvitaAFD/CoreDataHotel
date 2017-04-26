@@ -34,5 +34,15 @@
 //Trailing
 +(NSLayoutConstraint *)trailingConstraintFrom:(UIView *)view
                                        toView:(UIView *)otherView;
+//Nameless
++(NSArray *)constraintsWithVFLForViewDictionary:(NSDictionary *)viewDictionary
+                           forMetricsDictionary:(NSDictionary *)metricsDictionary
+                                    withOptions:(NSLayoutFormatOptions)options
+                               withVisualFormat:(NSString *)visualFormat;
+
++(NSLayoutConstraint *)setConstraintConstantsFrom: (UIView *)view
+                                           toView:(UIView *)superView
+                                    withAttribute: (NSLayoutAttribute)attribute
+                                      andConstant: (CGFloat)constant;
 
 @end

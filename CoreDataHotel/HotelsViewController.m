@@ -11,6 +11,7 @@
 #import "Hotel+CoreDataClass.h"
 #import "Hotel+CoreDataProperties.h"
 #import "AutoLayout.h"
+#import "RoomsViewController.h"
 
 @interface HotelsViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -23,7 +24,7 @@
 
 -(void)loadView{
     [super loadView];
-    //add tableview as subview and apply constraints
+
 }
 
 - (void)viewDidLoad {
@@ -86,7 +87,14 @@
     return cell;
     
 }
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
+    RoomsViewController *roomView = [[RoomsViewController alloc]init];
+    [roomView setAllRooms:[[self.allHotels[indexPath.row] rooms] allObjects]];
+    [self.navigationController pushViewController:roomView animated:YES];
+    
+
+}
 
 
 
