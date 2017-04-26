@@ -5,10 +5,21 @@
 //  Created by Eve Denison on 4/25/17.
 //  Copyright © 2017 Eve Denison. All rights reserved.
 //
-
 #import "BookViewController.h"
-#import "RoomsViewController.h"
 #import "AutoLayout.h"
+#import "AppDelegate.h"
+
+#import "Room+CoreDataClass.h"
+#import "Room+CoreDataProperties.h"
+
+#import "Hotel+CoreDataClass.h"
+#import "Hotel+CoreDataProperties.h"
+
+#import "Reservation+CoreDataClass.h"
+#import "Reservation+CoreDataProperties.h"
+
+#import "Guest+CoreDataClass.h"
+#import "Guest+CoreDataProperties.h"
 
 @interface BookViewController ()
 
@@ -26,7 +37,7 @@
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
     [self setupBooking];
-    [self setupDoneButton];
+    [self setupSaveButton];
    
 }
 
@@ -64,14 +75,17 @@
     
 }
 
--(void)setupDoneButton {
-    UIBarButtonItem *bookingDoneButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(bookingDoneButtonPressed)];
+-(void)setupSaveButton {
+    //add code from today
+    UIBarButtonItem *bookingSaveButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(bookingSaveButtonPressed)];
     
-    [self.navigationItem setRightBarButtonItem:bookingDoneButton];
+    [self.navigationItem setRightBarButtonItem:bookingSaveButton];
+    
 }
 
--(void)bookingDoneButtonPressed {
+-(void)bookingSaveButtonPressed {
 
+        [self.navigationController popViewControllerAnimated:YES];
 }
 
 

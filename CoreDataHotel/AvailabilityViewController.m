@@ -7,24 +7,33 @@
 //
 
 #import "AvailabilityViewController.h"
+
 #import "AutoLayout.h"
-#import "AppDelegate.h"
+
+
 #import "Reservation+CoreDataClass.h"
 #import "Reservation+CoreDataProperties.h"
+
 #import "Room+CoreDataClass.h"
 #import "Room+CoreDataProperties.h"
+
 #import "BookViewController.h"
+
+#import "Hotel+CoreDataClass.h"
+#import "Hotel+CoreDataProperties.h"
+
+#import "AppDelegate.h"
 
 @interface AvailabilityViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property(strong, nonatomic) UITableView *tableView;
-@property(strong, nonatomic) NSArray *availableRooms;
+@property(strong, nonatomic) NSFetchedResultsController *availableRooms;
 
 @end
 
 @implementation AvailabilityViewController
 
--(NSArray *)availableRooms {
+-(NSFetchedResultsController *)availableRooms {
     
     if (!_availableRooms) {
         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
@@ -45,9 +54,20 @@
         NSFetchRequest *roomRequest = [NSFetchRequest fetchRequestWithEntityName:@"Room"];
         roomRequest.predicate = [NSPredicate predicateWithFormat:@"NOT self IN %@", unavailableRooms];
         
+        NSSortDescriptor *roomSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"hotel.name" ascending:YES];
+        
+        NSSortDescriptor *roomNumberSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"number" ascending:YES];
+        
+        roomRequest.sortDescriptors = @[roomSortDescriptor, roomNumberSortDescriptor];
+    
+        
         NSError *availableRoomError;
         
-        _availableRooms = [appDelegate.persistentContainer.viewContext executeFetchRequest:roomRequest error:&availableRoomError];
+//        _availableRooms = [appDelegate.persistentContainer.viewContext executeFetchRequest:roomRequest error:&availableRoomError];
+        
+        _availableRooms = [[NSFetchedResultsController alloc] initWithFetchRequest:roomRequest managedObjectContext:appDelegate.persistentContainer.viewContext sectionNameKeyPath:@"hotel.name" cacheName:nil];
+        
+        [_availableRooms performFetch:&availableRoomError];
         
     }
 
@@ -87,16 +107,22 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.availableRooms.count;
+    
+    id<NSFetchedResultsSectionInfo> sectionInfo = [[self.availableRooms sections]objectAtIndex:section];
+//    return self.availableRooms.count;
+    
+    return sectionInfo.numberOfObjects;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *availableCell = [tableView dequeueReusableCellWithIdentifier:@"availableCell" forIndexPath:indexPath];
     
-    Room *currentRoom = self.availableRooms[indexPath.row];
+//    Room *currentRoom = self.availableRooms[indexPath.row];
+    Room *currentRoom = [self.availableRooms objectAtIndexPath:indexPath];
     
-    availableCell.textLabel.text = [NSString stringWithFormat:@"%i", currentRoom.number];
+    
+    availableCell.textLabel.text = [NSString stringWithFormat:@"Room: %i (%i beds, $%0.2f per night)", currentRoom.number, currentRoom.beds, currentRoom.rate];
     
     return availableCell;
     
@@ -104,10 +130,26 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    Room *room = [self.availableRooms objectAtIndexPath:indexPath];
+    
     BookViewController *bookView = [[BookViewController alloc]init];
+    bookView.room = room;
+    bookView.startDate = self.startDate;
+    bookView.endDate = self.endDate;
     [self.navigationController pushViewController:bookView animated:YES];
     
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return self.availableRooms.sections.count;
+
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
+    id<NSFetchedResultsSectionInfo> sectionInfo = [self.availableRooms.sections objectAtIndex:section];
     
+    return sectionInfo.name;
+
 }
 
 
