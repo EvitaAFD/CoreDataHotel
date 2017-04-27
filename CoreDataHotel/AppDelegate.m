@@ -85,7 +85,7 @@
                 
                 newRoom.number = [(NSNumber *)room[@"number"] intValue];
                 newRoom.beds = [(NSNumber *)room[@"beds"] intValue];
-                newRoom.cost = [(NSNumber *)room[@"cost"] floatValue];
+                newRoom.cost = [(NSNumber *)room[@"rate"] floatValue];
                 
                 newRoom.hotel = newHotel;
                 
