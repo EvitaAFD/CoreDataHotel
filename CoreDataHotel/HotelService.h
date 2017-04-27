@@ -9,7 +9,14 @@
 #import <Foundation/Foundation.h>
 
 #import "CoreDataHotel+CoreDataModel.h"
+
 #import "Hotel+CoreDataProperties.h"
+#import "Hotel+CoreDataClass.h"
+
+#import "Room+CoreDataClass.h"
+#import "Room+CoreDataProperties.h"
+
+#import "BookViewController.h"
 
 @interface HotelService : NSObject
 
@@ -18,5 +25,10 @@
 @property(strong, nonatomic) NSDate *endDate;
 
 +(NSFetchedResultsController *)availableRoomsWithStartDate:(NSDate *)startDate andEndDate:(NSDate *)endDate;
+
++(void)reservationBookingWithStartDate:(NSDate *)startDate
+                           withEndDate:(NSDate *)endDate
+                              withRoom:(Room *)room
+                         withFirstName:(NSString *)firstName withLastName:(NSString *)lastName andEmail:(NSString *)email;
 @end
 

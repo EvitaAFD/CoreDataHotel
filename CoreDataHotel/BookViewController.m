@@ -9,7 +9,9 @@
 @import Crashlytics;
 
 #import "BookViewController.h"
+
 #import "AutoLayout.h"
+
 #import "AppDelegate.h"
 
 #import "Room+CoreDataClass.h"
@@ -17,6 +19,8 @@
 
 #import "Hotel+CoreDataClass.h"
 #import "Hotel+CoreDataProperties.h"
+
+#import "HotelService.h"
 
 #import "Reservation+CoreDataClass.h"
 #import "Reservation+CoreDataProperties.h"
@@ -87,40 +91,9 @@
 }
 
 -(void)bookingSaveButtonPressed {
+   
+    [HotelService reservationBookingWithStartDate:self.startDate withEndDate:self.endDate withRoom:self.room withFirstName:self.firstName.text withLastName:self.lastName.text andEmail:self.email.text];
     
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-    
-    NSManagedObjectContext *context = appDelegate.persistentContainer.viewContext;
-    
-    Reservation *reservation = [NSEntityDescription insertNewObjectForEntityForName:@"Reservation" inManagedObjectContext:context];
-    
-    reservation.startDate = [NSDate date];
-    reservation.endDate = self.endDate;
-    reservation.room = self.room;
-    
-    self.room.reservation = [self.room.reservation setByAddingObject:reservation];
-    
-    reservation.guest = [NSEntityDescription insertNewObjectForEntityForName:@"Guest" inManagedObjectContext:context];
-    reservation.guest.firstName = self.firstName.text;
-    reservation.guest.lastName = self.lastName.text;
-    
-    NSError *saveError;
-    [context save:&saveError];
-    
-    if (saveError) {
-        
-        NSDictionary *attributeDictionary = @{@"Save Error: " :saveError.localizedDescription};
-        
-        [Answers logCustomEventWithName:@"Save reservation error." customAttributes:attributeDictionary];
-        
-        NSLog(@"Save error is %@", saveError);
-        
-    }else{
-        
-        [Answers logCustomEventWithName:@"Reservation Saved" customAttributes:nil];
-        
-        NSLog(@"Save reservation successful");
-    }
         [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
