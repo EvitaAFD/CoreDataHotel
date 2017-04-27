@@ -24,6 +24,7 @@
 		505494051EAFF27400F8447B /* BookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 505494041EAFF27400F8447B /* BookViewController.m */; };
 		505EF35F1EB1147A0067A232 /* AutoLayoutTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 505EF35E1EB1147A0067A232 /* AutoLayoutTests.m */; };
 		505EF3621EB161330067A232 /* LookUpReservationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 505EF3611EB161330067A232 /* LookUpReservationViewController.m */; };
+		505EF3651EB260730067A232 /* MappingModel1.0-1.1.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 505EF3641EB260730067A232 /* MappingModel1.0-1.1.xcmappingmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,8 @@
 		505EF35E1EB1147A0067A232 /* AutoLayoutTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoLayoutTests.m; sourceTree = "<group>"; };
 		505EF3601EB161330067A232 /* LookUpReservationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookUpReservationViewController.h; sourceTree = "<group>"; };
 		505EF3611EB161330067A232 /* LookUpReservationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookUpReservationViewController.m; sourceTree = "<group>"; };
+		505EF3631EB25DCC0067A232 /* CoreDataHotel 1.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "CoreDataHotel 1.1.xcdatamodel"; sourceTree = "<group>"; };
+		505EF3641EB260730067A232 /* MappingModel1.0-1.1.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = "MappingModel1.0-1.1.xcmappingmodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +134,7 @@
 		5049F1AB1EAE6D3E000B0C09 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				505EF3641EB260730067A232 /* MappingModel1.0-1.1.xcmappingmodel */,
 				5049F1AE1EAE962C000B0C09 /* hotel.png */,
 				5049F1AF1EAE962C000B0C09 /* hotels.json */,
 				5049F1B01EAE962C000B0C09 /* room.png */,
@@ -294,6 +298,7 @@
 				5049F1B61EAEA490000B0C09 /* HotelsViewController.m in Sources */,
 				5049F1B91EAECDD8000B0C09 /* RoomsViewController.m in Sources */,
 				505EF3621EB161330067A232 /* LookUpReservationViewController.m in Sources */,
+				505EF3651EB260730067A232 /* MappingModel1.0-1.1.xcmappingmodel in Sources */,
 				5049F1901EAE5F80000B0C09 /* main.m in Sources */,
 				5049F1AA1EAE6D30000B0C09 /* AutoLayout.m in Sources */,
 			);
@@ -507,9 +512,10 @@
 		5049F19A1EAE5F80000B0C09 /* CoreDataHotel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				505EF3631EB25DCC0067A232 /* CoreDataHotel 1.1.xcdatamodel */,
 				5049F19B1EAE5F80000B0C09 /* CoreDataHotel.xcdatamodel */,
 			);
-			currentVersion = 5049F19B1EAE5F80000B0C09 /* CoreDataHotel.xcdatamodel */;
+			currentVersion = 505EF3631EB25DCC0067A232 /* CoreDataHotel 1.1.xcdatamodel */;
 			path = CoreDataHotel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

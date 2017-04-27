@@ -181,30 +181,7 @@ BOOL isSearching;
     isSearching = NO;
     NSLog(@"Search Clicked");
 }
-//func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//    
-//    if !searchText.validate() {
-//        let lastIndex = searchText.index(before: searchText.endIndex)
-//        
-//        searchBar.text = searchText.substring(to: lastIndex)
-//    }
-//    
-//    if let searchedText = searchBar.text {
-//        self.displayRepos = self.repos.filter({$0.name.lowercased().contains(searchedText.lowercased())})
-//        self.displayRepos = self.repos.filter({$0.language.lowercased().contains(searchedText.lowercased())})
-//    }
-//    if searchBar.text == "" {
-//        self.displayRepos = nil
-//    }
-//}
-//
-//func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-//    self.displayRepos = nil
-//    self.searchBar.resignFirstResponder()
-//}
-//func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//    self.searchBar.resignFirstResponder()
-//}
+
 
 
 @end
