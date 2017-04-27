@@ -8,6 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+#import "CoreDataHotel+CoreDataModel.h"
+#import "Hotel+CoreDataProperties.h"
+
 @interface HotelService : NSObject
 
+@property(strong, nonatomic) NSFetchedResultsController *availableRooms;
+@property(strong, nonatomic) NSDate *startDate;
+@property(strong, nonatomic) NSDate *endDate;
+
++(NSFetchedResultsController *)availableRoomsWithStartDate:(NSDate *)startDate andEndDate:(NSDate *)endDate;
 @end
+

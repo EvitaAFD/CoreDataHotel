@@ -144,11 +144,11 @@
 		5049F1AB1EAE6D3E000B0C09 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5049F1AE1EAE962C000B0C09 /* hotel.png */,
+				5049F1AF1EAE962C000B0C09 /* hotels.json */,
 				505EF3701EB2919D0067A232 /* HotelService.h */,
 				505EF3711EB2919D0067A232 /* HotelService.m */,
 				505EF3641EB260730067A232 /* MappingModel1.0-1.1.xcmappingmodel */,
-				5049F1AE1EAE962C000B0C09 /* hotel.png */,
-				5049F1AF1EAE962C000B0C09 /* hotels.json */,
 				5049F1B01EAE962C000B0C09 /* room.png */,
 			);
 			name = Model;

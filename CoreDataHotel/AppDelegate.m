@@ -88,7 +88,6 @@
                 newRoom.cost = [(NSNumber *)room[@"rate"] floatValue];
                 
                 newRoom.hotel = newHotel;
-                
             }
             
         }
