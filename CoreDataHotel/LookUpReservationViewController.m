@@ -30,10 +30,14 @@
 @property(strong, nonatomic) NSArray *reservationDetails;
 @property(strong, nonatomic) UISearchBar *searchBar;
 @property(strong, nonatomic) NSArray *searchResult;
+@property(strong,nonatomic) NSMutableArray *filteredReservation;
 
 @end
 
+
 @implementation LookUpReservationViewController
+
+BOOL isSearching;
 
 -(NSArray *)reservationDetails {
     if (!_reservationDetails) {
@@ -67,6 +71,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
 }
 
 -(void)setupViewLayout {
@@ -110,7 +115,14 @@
 
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-     return self.reservationDetails.count;
+    
+    if (isSearching) {
+        return self.filteredReservation.count;
+    }
+    else {
+        return self.reservationDetails.count;
+    }
+    
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -119,8 +131,12 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
     }
-    
-    Reservation *reservations = self.reservationDetails[indexPath.row];
+    Reservation *reservations;
+    if (self.filteredReservation == nil) {
+        reservations = self.reservationDetails[indexPath.row];
+    } else {
+        reservations = self.filteredReservation[indexPath.row];
+    }
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MM-dd-yyyy"];
     
@@ -129,12 +145,66 @@
     
     NSString *formattedEndDateString = [dateFormatter stringFromDate:reservations.endDate];
     
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@: %@ in Room: %i, From: %@ to %@", reservations.guest.firstName, reservations.guest.lastName, reservations.room.hotel.name, reservations.room.number, formattedStartDateString, formattedEndDateString];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@: %@ in Room: %i, Check-In: %@ Check-Out: %@", reservations.guest.firstName, reservations.guest.lastName, reservations.room.hotel.name, reservations.room.number, formattedStartDateString, formattedEndDateString];
     cell.textLabel.numberOfLines = 0;
     
     return cell;
 }
 
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    isSearching = YES;
+    self.filteredReservation = [[NSMutableArray alloc]init];
+    self.filteredReservation = [[self.reservationDetails filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"guest.lastName CONTAINS %@", searchBar.text]] mutableCopy];
+    [self.tableView reloadData];
+}
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    NSLog(@"Text change - %d",isSearching);
+    isSearching = YES;
+    self.filteredReservation = [[NSMutableArray alloc]init];
+    self.filteredReservation = [[self.reservationDetails filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"guest.lastName CONTAINS %@", searchBar.text]] mutableCopy];
+    [self.tableView reloadData];
+}
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    searchBar.text = @"";
+    [self.filteredReservation removeAllObjects];
+    [self.tableView reloadData];
+    [searchBar resignFirstResponder];
+    isSearching = NO;
+    NSLog(@"Cancel clicked");
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    if (searchBar.text != nil) {
+    self.filteredReservation = [[NSMutableArray alloc]init];
+    self.filteredReservation = [[self.reservationDetails filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"guest.lastName CONTAINS %@", searchBar.text]] mutableCopy];
+    }
+    isSearching = NO;
+    NSLog(@"Search Clicked");
+}
+//func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//    
+//    if !searchText.validate() {
+//        let lastIndex = searchText.index(before: searchText.endIndex)
+//        
+//        searchBar.text = searchText.substring(to: lastIndex)
+//    }
+//    
+//    if let searchedText = searchBar.text {
+//        self.displayRepos = self.repos.filter({$0.name.lowercased().contains(searchedText.lowercased())})
+//        self.displayRepos = self.repos.filter({$0.language.lowercased().contains(searchedText.lowercased())})
+//    }
+//    if searchBar.text == "" {
+//        self.displayRepos = nil
+//    }
+//}
+//
+//func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+//    self.displayRepos = nil
+//    self.searchBar.resignFirstResponder()
+//}
+//func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//    self.searchBar.resignFirstResponder()
+//}
 
 
 @end
