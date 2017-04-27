@@ -39,7 +39,7 @@
         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
         
         NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Reservation"];
-        //need to change to start date after end date
+        
         request.predicate = [NSPredicate predicateWithFormat:@"startDate <= %@ AND endDate >= %@", self.endDate, self.startDate];
         
         NSError *roomError;
@@ -62,8 +62,6 @@
     
         
         NSError *availableRoomError;
-        
-//        _availableRooms = [appDelegate.persistentContainer.viewContext executeFetchRequest:roomRequest error:&availableRoomError];
         
         _availableRooms = [[NSFetchedResultsController alloc] initWithFetchRequest:roomRequest managedObjectContext:appDelegate.persistentContainer.viewContext sectionNameKeyPath:@"hotel.name" cacheName:nil];
         
@@ -109,8 +107,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     id<NSFetchedResultsSectionInfo> sectionInfo = [[self.availableRooms sections]objectAtIndex:section];
-//    return self.availableRooms.count;
-    
+
     return sectionInfo.numberOfObjects;
 }
 
@@ -118,9 +115,7 @@
     
     UITableViewCell *availableCell = [tableView dequeueReusableCellWithIdentifier:@"availableCell" forIndexPath:indexPath];
     
-//    Room *currentRoom = self.availableRooms[indexPath.row];
     Room *currentRoom = [self.availableRooms objectAtIndexPath:indexPath];
-    
     
     availableCell.textLabel.text = [NSString stringWithFormat:@"Room: %i (%i beds, $%0.2f per night)", currentRoom.number, currentRoom.beds, currentRoom.rate];
     

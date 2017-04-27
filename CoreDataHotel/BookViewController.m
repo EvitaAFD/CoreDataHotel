@@ -109,7 +109,7 @@
     }else{
         NSLog(@"Save reservation successful");
     }
-        [self.navigationController popViewControllerAnimated:YES];
+        [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 
