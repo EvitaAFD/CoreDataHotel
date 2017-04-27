@@ -5,6 +5,9 @@
 //  Created by Eve Denison on 4/25/17.
 //  Copyright © 2017 Eve Denison. All rights reserved.
 //
+
+@import Crashlytics;
+
 #import "BookViewController.h"
 #import "AutoLayout.h"
 #import "AppDelegate.h"
@@ -105,8 +108,17 @@
     [context save:&saveError];
     
     if (saveError) {
+        
+        NSDictionary *attributeDictionary = @{@"Save Error: " :saveError.localizedDescription};
+        
+        [Answers logCustomEventWithName:@"Save reservation error." customAttributes:attributeDictionary];
+        
         NSLog(@"Save error is %@", saveError);
+        
     }else{
+        
+        [Answers logCustomEventWithName:@"Reservation Saved" customAttributes:nil];
+        
         NSLog(@"Save reservation successful");
     }
         [self.navigationController popToRootViewControllerAnimated:YES];

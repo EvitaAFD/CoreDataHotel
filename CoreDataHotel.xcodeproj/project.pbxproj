@@ -27,6 +27,7 @@
 		505EF3651EB260730067A232 /* MappingModel1.0-1.1.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 505EF3641EB260730067A232 /* MappingModel1.0-1.1.xcmappingmodel */; };
 		505EF36B1EB26E750067A232 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 505EF3691EB26E750067A232 /* Fabric.framework */; };
 		505EF36C1EB26E750067A232 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 505EF36A1EB26E750067A232 /* Crashlytics.framework */; };
+		505EF3721EB2919D0067A232 /* HotelService.m in Sources */ = {isa = PBXBuildFile; fileRef = 505EF3711EB2919D0067A232 /* HotelService.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,8 @@
 		505EF3641EB260730067A232 /* MappingModel1.0-1.1.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = "MappingModel1.0-1.1.xcmappingmodel"; sourceTree = "<group>"; };
 		505EF3691EB26E750067A232 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		505EF36A1EB26E750067A232 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		505EF3701EB2919D0067A232 /* HotelService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotelService.h; sourceTree = "<group>"; };
+		505EF3711EB2919D0067A232 /* HotelService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotelService.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +144,8 @@
 		5049F1AB1EAE6D3E000B0C09 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				505EF3701EB2919D0067A232 /* HotelService.h */,
+				505EF3711EB2919D0067A232 /* HotelService.m */,
 				505EF3641EB260730067A232 /* MappingModel1.0-1.1.xcmappingmodel */,
 				5049F1AE1EAE962C000B0C09 /* hotel.png */,
 				5049F1AF1EAE962C000B0C09 /* hotels.json */,
@@ -316,6 +321,7 @@
 			files = (
 				505493FF1EAFBC7600F8447B /* DatePickerViewController.m in Sources */,
 				5049F1961EAE5F80000B0C09 /* ViewController.m in Sources */,
+				505EF3721EB2919D0067A232 /* HotelService.m in Sources */,
 				5049F19C1EAE5F80000B0C09 /* CoreDataHotel.xcdatamodeld in Sources */,
 				5049F1931EAE5F80000B0C09 /* AppDelegate.m in Sources */,
 				505494021EAFCFA500F8447B /* AvailabilityViewController.m in Sources */,
