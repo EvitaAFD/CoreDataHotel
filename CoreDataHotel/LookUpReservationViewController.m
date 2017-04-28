@@ -137,15 +137,8 @@ BOOL isSearching;
     } else {
         reservations = self.filteredReservation[indexPath.row];
     }
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"MM-dd-yyyy"];
     
-    
-    NSString *formattedStartDateString = [dateFormatter stringFromDate:reservations.startDate];
-    
-    NSString *formattedEndDateString = [dateFormatter stringFromDate:reservations.endDate];
-    
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@: %@ in Room: %i, Check-In: %@ Check-Out: %@", reservations.guest.firstName, reservations.guest.lastName, reservations.room.hotel.name, reservations.room.number, formattedStartDateString, formattedEndDateString];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@: %@ in Room: %i, Check-In: %@ Check-Out: %@", reservations.guest.firstName, reservations.guest.lastName, reservations.room.hotel.name, reservations.room.number, [LookUpReservationViewController getDateString:reservations.startDate], [LookUpReservationViewController getDateString:reservations.endDate]];
     cell.textLabel.numberOfLines = 0;
     
     return cell;
@@ -180,6 +173,17 @@ BOOL isSearching;
     }
     isSearching = NO;
     NSLog(@"Search Clicked");
+}
+
++(NSString *)getDateString:(NSDate *)date{
+    if (![date isKindOfClass:[NSDate class]]) {
+        NSException *exception = [NSException exceptionWithName:@"InvalidInputException" reason:@"Input is incorrect type it is not an NSDate" userInfo:nil];
+        @throw exception;
+    }
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterShortStyle];
+    return [dateFormatter stringFromDate:date];
 }
 
 

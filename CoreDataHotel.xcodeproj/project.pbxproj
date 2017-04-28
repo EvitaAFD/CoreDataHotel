@@ -28,6 +28,9 @@
 		505EF36B1EB26E750067A232 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 505EF3691EB26E750067A232 /* Fabric.framework */; };
 		505EF36C1EB26E750067A232 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 505EF36A1EB26E750067A232 /* Crashlytics.framework */; };
 		505EF3721EB2919D0067A232 /* HotelService.m in Sources */ = {isa = PBXBuildFile; fileRef = 505EF3711EB2919D0067A232 /* HotelService.m */; };
+		505EF3761EB2C4ED0067A232 /* DatePickerControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 505EF3751EB2C4ED0067A232 /* DatePickerControllerTests.m */; };
+		505EF3781EB2C83F0067A232 /* ViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 505EF3771EB2C83F0067A232 /* ViewControllerTests.m */; };
+		505EF37A1EB2D10F0067A232 /* LookUpReservationViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 505EF3791EB2D10F0067A232 /* LookUpReservationViewControllerTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +80,9 @@
 		505EF36A1EB26E750067A232 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		505EF3701EB2919D0067A232 /* HotelService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotelService.h; sourceTree = "<group>"; };
 		505EF3711EB2919D0067A232 /* HotelService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotelService.m; sourceTree = "<group>"; };
+		505EF3751EB2C4ED0067A232 /* DatePickerControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerControllerTests.m; sourceTree = "<group>"; };
+		505EF3771EB2C83F0067A232 /* ViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerTests.m; sourceTree = "<group>"; };
+		505EF3791EB2D10F0067A232 /* LookUpReservationViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookUpReservationViewControllerTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +196,9 @@
 		505EF3551EB111CA0067A232 /* CoreDataHotelTests */ = {
 			isa = PBXGroup;
 			children = (
+				505EF3791EB2D10F0067A232 /* LookUpReservationViewControllerTests.m */,
+				505EF3751EB2C4ED0067A232 /* DatePickerControllerTests.m */,
+				505EF3771EB2C83F0067A232 /* ViewControllerTests.m */,
 				505EF35E1EB1147A0067A232 /* AutoLayoutTests.m */,
 				505EF3581EB111CA0067A232 /* Info.plist */,
 			);
@@ -339,7 +348,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				505EF3781EB2C83F0067A232 /* ViewControllerTests.m in Sources */,
 				505EF35F1EB1147A0067A232 /* AutoLayoutTests.m in Sources */,
+				505EF3761EB2C4ED0067A232 /* DatePickerControllerTests.m in Sources */,
+				505EF37A1EB2D10F0067A232 /* LookUpReservationViewControllerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
