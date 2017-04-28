@@ -6,10 +6,16 @@
 //  Copyright © 2017 Eve Denison. All rights reserved.
 //
 
+@import Crashlytics;
+
 #import "ViewController.h"
+
 #import "AutoLayout.h"
+
 #import "HotelsViewController.h"
+
 #import "DatePickerViewController.h"
+
 #import "LookUpReservationViewController.h"
 @interface ViewController ()
 
@@ -67,6 +73,9 @@
 }
 
 -(void)bookButtonSelected {
+    
+    [Answers logCustomEventWithName:@"Book button pressed." customAttributes:nil];
+    
     DatePickerViewController *datePickerController = [[DatePickerViewController alloc]init];
     
     [self.navigationController pushViewController:datePickerController animated:YES];
@@ -74,6 +83,9 @@
 }
 
 -(void)browseButtonSelected {
+    
+    [Answers logCustomEventWithName:@"Browse button pressed." customAttributes:nil];
+    
     HotelsViewController *newHotelView = [[HotelsViewController alloc]init];
     
     [self.navigationController pushViewController:newHotelView animated:YES];

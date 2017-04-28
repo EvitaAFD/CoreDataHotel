@@ -137,15 +137,8 @@ BOOL isSearching;
     } else {
         reservations = self.filteredReservation[indexPath.row];
     }
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"MM-dd-yyyy"];
     
-    
-    NSString *formattedStartDateString = [dateFormatter stringFromDate:reservations.startDate];
-    
-    NSString *formattedEndDateString = [dateFormatter stringFromDate:reservations.endDate];
-    
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@: %@ in Room: %i, Check-In: %@ Check-Out: %@", reservations.guest.firstName, reservations.guest.lastName, reservations.room.hotel.name, reservations.room.number, formattedStartDateString, formattedEndDateString];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@: %@ in Room: %i, Check-In: %@ Check-Out: %@", reservations.guest.firstName, reservations.guest.lastName, reservations.room.hotel.name, reservations.room.number, [LookUpReservationViewController getDateString:reservations.startDate], [LookUpReservationViewController getDateString:reservations.endDate]];
     cell.textLabel.numberOfLines = 0;
     
     return cell;
@@ -153,58 +146,53 @@ BOOL isSearching;
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
     isSearching = YES;
-    self.filteredReservation = [[NSMutableArray alloc]init];
-    self.filteredReservation = [[self.reservationDetails filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"guest.lastName CONTAINS %@", searchBar.text]] mutableCopy];
-    [self.tableView reloadData];
 }
+
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    NSLog(@"Text change - %d",isSearching);
     isSearching = YES;
-    self.filteredReservation = [[NSMutableArray alloc]init];
-    self.filteredReservation = [[self.reservationDetails filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"guest.lastName CONTAINS %@", searchBar.text]] mutableCopy];
+    if ([searchText isEqualToString:@""]) {
+        isSearching = NO;
+        self.filteredReservation = nil;
+    } else {
+        self.filteredReservation = [[NSMutableArray alloc]init];
+        self.filteredReservation = [[self.reservationDetails filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"guest.lastName CONTAINS[c] %@ OR guest.firstName CONTAINS[c] %@", searchBar.text, searchBar.text]] mutableCopy];
+    }
+    
     [self.tableView reloadData];
 }
+
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     searchBar.text = @"";
-    [self.filteredReservation removeAllObjects];
+    self.filteredReservation = nil;
     [self.tableView reloadData];
     [searchBar resignFirstResponder];
     isSearching = NO;
-    NSLog(@"Cancel clicked");
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     if (searchBar.text != nil) {
-    self.filteredReservation = [[NSMutableArray alloc]init];
-    self.filteredReservation = [[self.reservationDetails filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"guest.lastName CONTAINS %@", searchBar.text]] mutableCopy];
+        self.filteredReservation = [[NSMutableArray alloc]init];
+        self.filteredReservation = [[self.reservationDetails filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"guest.lastName CONTAINS[c] %@ OR guest.firstName CONTAINS[c] %@", searchBar.text, searchBar.text]] mutableCopy];
     }
     isSearching = NO;
-    NSLog(@"Search Clicked");
 }
-//func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//    
-//    if !searchText.validate() {
-//        let lastIndex = searchText.index(before: searchText.endIndex)
-//        
-//        searchBar.text = searchText.substring(to: lastIndex)
-//    }
-//    
-//    if let searchedText = searchBar.text {
-//        self.displayRepos = self.repos.filter({$0.name.lowercased().contains(searchedText.lowercased())})
-//        self.displayRepos = self.repos.filter({$0.language.lowercased().contains(searchedText.lowercased())})
-//    }
-//    if searchBar.text == "" {
-//        self.displayRepos = nil
-//    }
-//}
-//
-//func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-//    self.displayRepos = nil
-//    self.searchBar.resignFirstResponder()
-//}
-//func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//    self.searchBar.resignFirstResponder()
-//}
+
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
+{
+    isSearching = NO;
+}
+
++(NSString *)getDateString:(NSDate *)date{
+    if (![date isKindOfClass:[NSDate class]]) {
+        NSException *exception = [NSException exceptionWithName:@"InvalidInputException" reason:@"Input is incorrect type it is not an NSDate" userInfo:nil];
+        @throw exception;
+    }
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterShortStyle];
+    return [dateFormatter stringFromDate:date];
+}
+
 
 
 @end
