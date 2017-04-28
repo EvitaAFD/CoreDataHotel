@@ -146,33 +146,40 @@ BOOL isSearching;
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
     isSearching = YES;
-    self.filteredReservation = [[NSMutableArray alloc]init];
-    self.filteredReservation = [[self.reservationDetails filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"guest.lastName CONTAINS %@", searchBar.text]] mutableCopy];
-    [self.tableView reloadData];
 }
+
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    NSLog(@"Text change - %d",isSearching);
     isSearching = YES;
-    self.filteredReservation = [[NSMutableArray alloc]init];
-    self.filteredReservation = [[self.reservationDetails filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"guest.lastName CONTAINS %@", searchBar.text]] mutableCopy];
+    if ([searchText isEqualToString:@""]) {
+        isSearching = NO;
+        self.filteredReservation = nil;
+    } else {
+        self.filteredReservation = [[NSMutableArray alloc]init];
+        self.filteredReservation = [[self.reservationDetails filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"guest.lastName CONTAINS[c] %@ OR guest.firstName CONTAINS[c] %@", searchBar.text, searchBar.text]] mutableCopy];
+    }
+    
     [self.tableView reloadData];
 }
+
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     searchBar.text = @"";
-    [self.filteredReservation removeAllObjects];
+    self.filteredReservation = nil;
     [self.tableView reloadData];
     [searchBar resignFirstResponder];
     isSearching = NO;
-    NSLog(@"Cancel clicked");
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     if (searchBar.text != nil) {
-    self.filteredReservation = [[NSMutableArray alloc]init];
-    self.filteredReservation = [[self.reservationDetails filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"guest.lastName CONTAINS %@", searchBar.text]] mutableCopy];
+        self.filteredReservation = [[NSMutableArray alloc]init];
+        self.filteredReservation = [[self.reservationDetails filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"guest.lastName CONTAINS[c] %@ OR guest.firstName CONTAINS[c] %@", searchBar.text, searchBar.text]] mutableCopy];
     }
     isSearching = NO;
-    NSLog(@"Search Clicked");
+}
+
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
+{
+    isSearching = NO;
 }
 
 +(NSString *)getDateString:(NSDate *)date{
